@@ -1,19 +1,24 @@
 package com.tavanhieu.fastfood.fragment_login;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 import com.tavanhieu.fastfood.R;
-import com.tavanhieu.fastfood.activities.MainActivity;
+import com.tavanhieu.fastfood.my_class.User;
+
+import java.util.Objects;
 
 public class FragmentSignUp extends Fragment {
     private Button btnSignUp;
@@ -32,10 +37,68 @@ public class FragmentSignUp extends Fragment {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(requireActivity(), MainActivity.class));
-                requireActivity().finish();
+                signUpUser();
+//                startActivity(new Intent(requireActivity(), MainActivity.class));
+//                requireActivity().finish();
             }
         });
+    }
+
+    private void signUpUser() {
+        //Kiểm tra các giá trị đầu vào:
+        if(edtUserNameSignUp.getText().length() == 0
+                || edtEmail.getText().length() == 0
+                || edtPassSignUp.getText().length() == 0
+                || edtPassSignUp2.getText().length() == 0) {
+            Toast.makeText(requireActivity(), "Please enter all note.", Toast.LENGTH_SHORT).show();
+        } else {
+            //Lấy dữ liệu từ các ô nhập
+            String userName = edtUserNameSignUp.getText().toString().trim();
+            String email = edtEmail.getText().toString().trim();
+            String pass = edtPassSignUp.getText().toString().trim();
+            String pass2 = edtPassSignUp2.getText().toString().trim();
+
+            //Kiểm tra dữ liệu:
+            if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                edtEmail.setFocusable(true);
+                edtEmail.setError("Email not correct!");
+            } else if(!pass.equals(pass2)) {
+                edtPassSignUp2.setFocusable(true);
+                edtPassSignUp2.setError("Pass2 not matches with pass1");
+            } else {
+                createAccount(userName, email, pass);
+            }
+        }
+    }
+
+    private void createAccount(String name, String email, String pass) {
+        FirebaseAuth.getInstance()
+                .createUserWithEmailAndPassword(email, pass)
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()) {
+                        //Nếu người dùng được tạo thành công
+                        //Thì cập nhật thông tin lên RealTimeDB.
+                        String uid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+                        FirebaseDatabase
+                                .getInstance()
+                                .getReference()
+                                .child("TableUser")
+                                .child(uid)
+                                .setValue(new User(name, email, uid));
+
+                        //Sau khi đăng ký xong thì signOut để đăng nhập:
+                        FirebaseAuth.getInstance().signOut();
+                        //Quay về màn hình đăng nhập:
+                        Toast.makeText(requireActivity(), "Register Successfully!", Toast.LENGTH_SHORT).show();
+                        requireActivity()
+                                .getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.fragment_sign_in_up, new FragmentSignIn())
+                                .commit();
+                    } else {
+                        Toast.makeText(requireActivity(), "Register Unsuccessfully!", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void anhXa() {
