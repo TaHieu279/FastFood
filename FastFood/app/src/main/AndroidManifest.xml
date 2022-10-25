@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FastFood">
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
