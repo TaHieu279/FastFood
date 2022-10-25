@@ -1,40 +1,22 @@
 package com.tavanhieu.fastfood.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tavanhieu.fastfood.R;
-import com.tavanhieu.fastfood.adapters.CategoryAdapter;
-import com.tavanhieu.fastfood.adapters.PopularAdapter;
-import com.tavanhieu.fastfood.my_class.BuyProduct;
-import com.tavanhieu.fastfood.my_class.Categories;
-import com.tavanhieu.fastfood.my_class.Popular;
-import com.tavanhieu.fastfood.sqlite_roomdb.MyDatabase;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
+import com.tavanhieu.fastfood.fragment_main.Fragment_Home;
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView rcvCategory;
-    private RecyclerView rcvPopular;
-    private ArrayList<Categories> arr1;
-    private ArrayList<Popular> arr2;
     private FloatingActionButton btnCart;
-    private TextView txtHome;
-    private ImageView imgHome;
+    private TextView txtHome, txtContact, txtNotifies, txtSetting;
+    private ImageView imgHome, imgContact, imgNotifies, imgSetting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,68 +24,59 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         anhXa();
-        deployCategoryAdapter();
-        deployPopularAdapter();
         myOnClick();
 
+        //Chọn nút home mặc định
         txtHome.setTextColor(Color.parseColor("#ff5e00"));
         imgHome.setImageResource(R.drawable.ic_home_orange);
+
+        //Cài đặt fragment mặc định:
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_main, new Fragment_Home())
+                .commit();
     }
 
     private void anhXa() {
-        rcvCategory = findViewById(R.id.rcv_categories_main);
-        rcvPopular = findViewById(R.id.rcv_popular_main);
+        //Bottom app bar:
         btnCart = findViewById(R.id.float_bar_main);
-        txtHome = findViewById(R.id.txt_home_main);
-        imgHome = findViewById(R.id.img_home_main);
-    }
-
-    private void deployCategoryAdapter() {
-        //Thêm dữ liệu cho mảng Catgory:
-        arr1 = new ArrayList<>();
-        arr1.add(new Categories(R.drawable.cat_1, "Pizza"));
-        arr1.add(new Categories(R.drawable.cat_2, "Cake"));
-        arr1.add(new Categories(R.drawable.cat_3, "Hot dog"));
-        arr1.add(new Categories(R.drawable.cat_4, "Coca"));
-        arr1.add(new Categories(R.drawable.cat_5, "Pie"));
-        //Ánh xạ adapter category:
-        RecyclerView.Adapter<CategoryAdapter.ViewHolderCategory> adapter = new CategoryAdapter(arr1);
-        rcvCategory.setAdapter(adapter);
-    }
-
-    private void deployPopularAdapter() {
-        //Thêm dữ liệu cho mảng Popular:
-        arr2 = new ArrayList<>();
-        arr2.add(new Popular("Pepperoni pizza", "This is description for item popular in fast food app." +
-                "This is description for item popular in fast food app 1." +
-                "This is description for item popular in fast food app 2." +
-                "This is description for item popular in fast food app 3." +
-                "This is description for item popular in fast food app 4." +
-                "This is description for item popular in fast food app 5." +
-                "This is description for item popular in fast food app 6." +
-                "This is description for item popular in fast food app 7.", R.drawable.pop_1, 9.76f));
-        arr2.add(new Popular("Cheese Burger", "This is description for item popular in fast food app." +
-                "This is description for item popular in fast food app 1." +
-                "This is description for item popular in fast food app 2." +
-                "This is description for item popular in fast food app 3.", R.drawable.pop_2, 8.5f));
-        arr2.add(new Popular("Vegetable pizza", "This is description for item popular in fast food app.\n" +
-                "This is description for item popular in fast food app 1.\n" +
-                "This is description for item popular in fast food app 2.\n" +
-                "This is description for item popular in fast food app 3.\n" +
-                "This is description for item popular in fast food app 4.\n" +
-                "This is description for item popular in fast food app 5.\n" +
-                "This is description for item popular in fast food app 6.\n" +
-                "This is description for item popular in fast food app 7.", R.drawable.pop_3,  10.8f));
-        //Ánh xạ adapter popular:
-        RecyclerView.Adapter<PopularAdapter.ViewHolderPopular> adapter = new PopularAdapter(arr2);
-        rcvPopular.setAdapter(adapter);
+        imgHome     = findViewById(R.id.img_home_main);
+        txtHome     = findViewById(R.id.txt_home_main);
+        imgContact  = findViewById(R.id.img_contact_main);
+        txtContact  = findViewById(R.id.txt_contact_main);
+        imgNotifies = findViewById(R.id.img_notifies_main);
+        txtNotifies = findViewById(R.id.txt_notifies_main);
+        imgSetting  = findViewById(R.id.img_setting_main);
+        txtSetting  = findViewById(R.id.txt_setting_main);
     }
 
     private void myOnClick() {
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Chuyển sang activity Cart
                 startActivity(new Intent(MainActivity.this, CartActivity.class));
+            }
+        });
+
+        imgHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Home is select
+                imgHome.setImageResource(R.drawable.ic_home_orange);
+                txtHome.setTextColor(Color.parseColor("#ff5e00"));
+                imgContact.setImageResource(R.drawable.ic_people);
+                txtContact.setTextColor(Color.parseColor("#000000"));
+                imgNotifies.setImageResource(R.drawable.ic_notifications);
+                txtNotifies.setTextColor(Color.parseColor("#000000"));
+                imgSetting.setImageResource(R.drawable.ic_settings);
+                txtSetting.setTextColor(Color.parseColor("#000000"));
+
+                //Chuyển sang fragment home:
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_main, new Fragment_Home())
+                        .commit();
             }
         });
     }
