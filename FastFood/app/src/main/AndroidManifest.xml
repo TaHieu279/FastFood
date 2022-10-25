@@ -10,6 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FastFood">
         <activity
+            android:name=".SettingInformationActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".activities.LoginActivity"
             android:exported="false">
             <meta-data

@@ -11,7 +11,10 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tavanhieu.fastfood.R;
+import com.tavanhieu.fastfood.fragment_main.Fragment_Contact;
 import com.tavanhieu.fastfood.fragment_main.Fragment_Home;
+import com.tavanhieu.fastfood.fragment_main.Fragment_Notifies;
+import com.tavanhieu.fastfood.fragment_main.Fragment_Setting;
 
 public class MainActivity extends AppCompatActivity {
     private FloatingActionButton btnCart;
@@ -76,6 +79,69 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_main, new Fragment_Home())
+                        .commit();
+            }
+        });
+
+        imgContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imgHome.setImageResource(R.drawable.ic_home);
+                txtHome.setTextColor(Color.parseColor("#000000"));
+                //Contact is select
+                imgContact.setImageResource(R.drawable.ic_people_orange);
+                txtContact.setTextColor(Color.parseColor("#ff5e00"));
+                imgNotifies.setImageResource(R.drawable.ic_notifications);
+                txtNotifies.setTextColor(Color.parseColor("#000000"));
+                imgSetting.setImageResource(R.drawable.ic_settings);
+                txtSetting.setTextColor(Color.parseColor("#000000"));
+
+                //Chuyển sang fragment contact
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_main, new Fragment_Contact())
+                        .commit();
+            }
+        });
+
+        imgNotifies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imgHome.setImageResource(R.drawable.ic_home);
+                txtHome.setTextColor(Color.parseColor("#000000"));
+                imgContact.setImageResource(R.drawable.ic_people);
+                txtContact.setTextColor(Color.parseColor("#000000"));
+                //Notifies is select
+                imgNotifies.setImageResource(R.drawable.ic_notifications_orange);
+                txtNotifies.setTextColor(Color.parseColor("#ff5e00"));
+                imgSetting.setImageResource(R.drawable.ic_settings);
+                txtSetting.setTextColor(Color.parseColor("#000000"));
+
+                //Chuyển sang fragment notification
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_main, new Fragment_Notifies())
+                        .commit();
+            }
+        });
+
+        imgSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imgHome.setImageResource(R.drawable.ic_home);
+                txtHome.setTextColor(Color.parseColor("#000000"));
+                imgContact.setImageResource(R.drawable.ic_people);
+                txtContact.setTextColor(Color.parseColor("#000000"));
+                imgNotifies.setImageResource(R.drawable.ic_notifications);
+                txtNotifies.setTextColor(Color.parseColor("#000000"));
+                //Setting is select
+                imgSetting.setImageResource(R.drawable.ic_settings_orange);
+                txtSetting.setTextColor(Color.parseColor("#ff5e00"));
+
+                //Chuyển sang fragment Setting:
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_main, new Fragment_Setting())
                         .commit();
             }
         });
