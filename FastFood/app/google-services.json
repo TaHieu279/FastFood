@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "705775496341",
+    "project_id": "fastfood2-87b98",
+    "storage_bucket": "fastfood2-87b98.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705775496341:android:818f52bde25e701274ff9c",
+        "android_client_info": {
+          "package_name": "com.tavanhieu.fastfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "705775496341-pv71n21ksjtva7vh0p09tk45d9lhpvvm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2xQou9iHnHx5nsO27QVj1U5XkCHQdRzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "705775496341-pv71n21ksjtva7vh0p09tk45d9lhpvvm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
