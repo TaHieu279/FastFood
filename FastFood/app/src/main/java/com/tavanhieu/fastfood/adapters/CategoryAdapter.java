@@ -2,6 +2,7 @@ package com.tavanhieu.fastfood.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +16,18 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tavanhieu.fastfood.R;
+import com.tavanhieu.fastfood.activities.CategoriesHomeActivity;
 import com.tavanhieu.fastfood.my_class.Categories;
 
 import java.util.ArrayList;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolderCategory> {
     private ArrayList<Categories> arr;
+    private Context context;
 
     @SuppressLint("NotifyDataSetChanged")
-    public CategoryAdapter(ArrayList<Categories> arr) {
+    public CategoryAdapter(Context context, ArrayList<Categories> arr) {
+        this.context = context;
         this.arr = arr;
         notifyDataSetChanged();
     }
@@ -50,12 +54,54 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderCategory holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolderCategory holder, @SuppressLint("RecyclerView") int position) {
         Categories item = arr.get(position);
         if (item == null)
             return;
         holder.imgItem.setImageResource(item.getImg());
         holder.txtItem.setText(item.getTitle());
+        setBackgroundItem(holder, position);
+        //sự kiện click: ấn vào item mở ra danh sách của item đó
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myItemClick(position);
+            }
+        });
+    }
+
+    private void myItemClick(int position) {
+        switch (position) {
+            case 0: {
+                myOpenNewActivity(0);
+                break;
+            }
+            case 1: {
+                myOpenNewActivity(1);
+                break;
+            }
+            case 2: {
+                myOpenNewActivity(2);
+                break;
+            }
+            case 3: {
+                myOpenNewActivity(3);
+                break;
+            }
+            case 4: {
+                myOpenNewActivity(4);
+                break;
+            }
+        }
+    }
+
+    private void myOpenNewActivity(int viTri) {
+        Intent intent = new Intent(context, CategoriesHomeActivity.class);
+        intent.putExtra("item", viTri);
+        context.startActivity(intent);
+    }
+
+    private void setBackgroundItem(ViewHolderCategory holder, int position) {
         switch (position) {
             case 0: {
                 holder.layoutItem.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.cat_background1));
