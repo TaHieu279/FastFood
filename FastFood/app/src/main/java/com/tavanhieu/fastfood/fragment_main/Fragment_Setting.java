@@ -1,108 +1,104 @@
 package com.tavanhieu.fastfood.fragment_main;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.tavanhieu.fastfood.R;
 import com.tavanhieu.fastfood.activities.LoginActivity;
-import com.tavanhieu.fastfood.activities.SettingInformationActivity;
-import com.tavanhieu.fastfood.my_class.User;
+import com.tavanhieu.fastfood.activities.UserInformationActivity;
+import com.tavanhieu.fastfood.adapters.PurchaseOrderAdapter;
+import com.tavanhieu.fastfood.my_class.Categories;
 
-import java.util.Objects;
+import java.util.ArrayList;
 
 public class Fragment_Setting extends Fragment {
     private View mView;
-    private Button btnSettingInformation, btnLogOut;
-    private EditText edtUserName, edtDateOfBirth, edtAddress;
-    private User user;
+    private Button btnPersonalInfor, btnHelp, btnLogout;
+    private RecyclerView rcvPurchaseOrder, rcvMyWallet;
+    private TextView txtUserName;
+
+    //Sử dụng lại Categories để không phải tạo class mới.
+    private ArrayList<Categories> arr1 = new ArrayList<>(), arr2 = new ArrayList<>();
+    private PurchaseOrderAdapter adapter1, adapter2;
+    private SharedPreferences sharedPreferences;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.activity_personal_informaltion, container, false);
+        mView = inflater.inflate(R.layout.fragment_setting, container, false);
+
+        //Khởi tạo sharedPreferences để lưu trữ thông tin người dùng:
+        sharedPreferences = requireActivity().getSharedPreferences("InformationUser", Context.MODE_PRIVATE);
 
         anhXa();
         myOnClick();
-        getUserFromFirebase();
+        loadData();
 
         return mView;
     }
 
-    private void getUserFromFirebase() {
-        //Lấy ra uid:
-        String uid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-        //Lấy ra user từ uid:
-        FirebaseDatabase
-                .getInstance()
-                .getReference()
-                .child("TableUser")
-                .child(uid)
-                .addValueEventListener(new ValueEventListener() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        try {
-                            //Lấy user từ Firebase:
-                            User tam = snapshot.getValue(User.class);
-                            //Gán dữ liệu ra text:
-                            if (tam != null) {
-                                edtUserName.setText(tam.getUserName());
-                                edtDateOfBirth.setText(tam.getDateOfBirth());
-                                edtAddress.setText(tam.getAddress());
-                                user = tam;
-                            }
-                        } catch (Exception ex) {
-                            Toast.makeText(requireContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) { }
-                });
+    private void loadData() {
+        //Hiển thị tên người dùng:
+        txtUserName.setText(sharedPreferences.getString("UserName", ""));
+        //Thêm mảng:
+        addArrayForSetting();
+    }
 
+    private void addArrayForSetting() {
+        //Purchase Order
+        arr1.add(new Categories(R.drawable.to_pay, "To Pay"));
+        arr1.add(new Categories(R.drawable.to_ship, "To Ship"));
+        arr1.add(new Categories(R.drawable.to_receive, "To Receive"));
+        arr1.add(new Categories(R.drawable.cancel, "Cancel"));
+        adapter1 = new PurchaseOrderAdapter(arr1);
+        rcvPurchaseOrder.setAdapter(adapter1);
+        //My Wallet
+        arr2.add(new Categories(R.drawable.wallet, "Wallet"));
+        arr2.add(new Categories(R.drawable.voucher, "Vouchers"));
+        arr2.add(new Categories(R.drawable.coin, "My coins"));
+        adapter2 = new PurchaseOrderAdapter(arr2);
+        rcvMyWallet.setAdapter(adapter2);
     }
 
     private void myOnClick() {
-        btnLogOut.setOnClickListener(new View.OnClickListener() {
+        btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                //Đăng xuất khỏi ứng dụng:
-                startActivity(new Intent(requireActivity(), LoginActivity.class));
+            public void onClick(View v) {
+                //Logout tài khoản
                 FirebaseAuth.getInstance().signOut();
+                //Trở về màn hình login
+                startActivity(new Intent(requireActivity(), LoginActivity.class));
                 requireActivity().finish();
             }
         });
 
-        btnSettingInformation.setOnClickListener(new View.OnClickListener() {
+        btnPersonalInfor.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(requireActivity(), SettingInformationActivity.class);
-                intent.putExtra("user", user);
-                startActivity(intent);
+            public void onClick(View v) {
+                startActivity(new Intent(requireActivity(), UserInformationActivity.class));
             }
         });
     }
 
     private void anhXa() {
-        btnLogOut = mView.findViewById(R.id.btn_log_out);
-        btnSettingInformation = mView.findViewById(R.id.btn_setting_information);
-        edtUserName = mView.findViewById(R.id.edt_user_name);
-        edtDateOfBirth = mView.findViewById(R.id.edt_date_of_birth);
-        edtAddress = mView.findViewById(R.id.edt_address);
+        txtUserName = mView.findViewById(R.id.txt_user_name);
+        btnHelp = mView.findViewById(R.id.btn_help);
+        btnLogout = mView.findViewById(R.id.btn_logout);
+        btnPersonalInfor = mView.findViewById(R.id.btn_personal_infor);
+        rcvMyWallet = mView.findViewById(R.id.rcv_my_wallet);
+        rcvPurchaseOrder = mView.findViewById(R.id.rcv_purchase_order);
     }
 }

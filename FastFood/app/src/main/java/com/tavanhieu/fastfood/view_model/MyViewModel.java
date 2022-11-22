@@ -21,4 +21,8 @@ public class MyViewModel extends ViewModel {
     public void insert(Context context, BuyProduct buyProduct) {
         MyDatabase.getMyInstances(context).myDao().insert(buyProduct);
     }
+
+    public void deleteTable(Context context) {
+        MyDatabase.getMyInstances(context).myDao().delete();
+    }
 }
