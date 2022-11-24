@@ -7,7 +7,7 @@ Technologies in app: <br/>
 + Room Database <br/>
 + Recycle View <br/>
 <h1> Demo app </h1>
-<a href="https://user-images.githubusercontent.com/71754731/186569446-8d0a90c5-1a5d-4ca9-bf14-496176a79418.mp4"> See video Demo App </a>
+<a href="https://drive.google.com/file/d/1fs9tYlCRt0SSyfnE42VerflG6sU75kLc/view?fbclid=IwAR0OcR_hrT5B_z8Pugkf1aYhbAoUzchgTulvDmaqdELPBhjhccrpVArA10c"> See video Demo App </a>
 
 <h1> Link install FastFood App </h1>
 <a href="https://drive.google.com/file/d/128OHlJBbkFlXLkVsdYE0VC8FkBkwjk7u/view?usp=sharing"> Click here! </a>
