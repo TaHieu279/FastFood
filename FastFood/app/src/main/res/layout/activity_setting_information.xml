@@ -6,16 +6,31 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="5dp"
-    tools:context=".activities.SettingInformationActivity">
+    tools:context=".activities.user_info.SettingInformationActivity">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Update Profile"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="12dp">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-48dp"
+            android:text="Update Profile"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -71,8 +86,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:hint="dd/mm/yyyy"
                 android:enabled="false"
+                android:hint="dd/mm/yyyy"
                 android:textColor="@color/black" />
 
             <ImageButton
@@ -122,19 +137,20 @@
             android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@drawable/tab_layout_selected"
+            android:layout_margin="12dp"
+            android:background="@drawable/tab_layout_unselected"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
             android:text="Cancel"
             android:textAllCaps="false"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <Button
             android:id="@+id/btnUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="12dp"
             android:background="@drawable/tab_layout_selected"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"

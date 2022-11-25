@@ -34,6 +34,7 @@ public class Fragment_Home extends Fragment {
     private TextView txtUserName;
     private ArrayList<Categories> arr1;
     private ArrayList<Popular> arr2;
+    private RecyclerView.Adapter<PopularAdapter.ViewHolderPopular> adapter;
 
     @SuppressLint({"SetTextI18n", "ShowToast"})
     @Nullable
@@ -46,6 +47,9 @@ public class Fragment_Home extends Fragment {
         getDataCategories();
         getDataPopular();
 
+        //Ánh xạ adapter popular:
+        adapter = new PopularAdapter(arr2);
+        rcvPopular.setAdapter(adapter);
         return mView;
     }
 
@@ -84,41 +88,40 @@ public class Fragment_Home extends Fragment {
         //Thêm dữ liệu cho mảng Catgory:
         arr1 = new ArrayList<>();
         arr1.add(new Categories(R.drawable.cat_1, "Pizza"));
-        arr1.add(new Categories(R.drawable.cat_2, "Cake"));
+        arr1.add(new Categories(R.drawable.cat_2, "Bugger"));
         arr1.add(new Categories(R.drawable.cat_3, "Hot dog"));
-        arr1.add(new Categories(R.drawable.cat_4, "Coca"));
+        arr1.add(new Categories(R.drawable.cat_4, "Drink"));
         arr1.add(new Categories(R.drawable.cat_5, "Pie"));
         //Ánh xạ adapter category:
-        RecyclerView.Adapter<CategoryAdapter.ViewHolderCategory> adapter = new CategoryAdapter(arr1);
+        RecyclerView.Adapter<CategoryAdapter.ViewHolderCategory> adapter = new CategoryAdapter(requireActivity(), arr1);
         rcvCategory.setAdapter(adapter);
     }
 
     private void getDataPopular() {
         //Thêm dữ liệu cho mảng Popular:
         arr2 = new ArrayList<>();
-        arr2.add(new Popular("Pepperoni pizza", "This is description for item popular in fast food app." +
-                "This is description for item popular in fast food app 1." +
-                "This is description for item popular in fast food app 2." +
-                "This is description for item popular in fast food app 3." +
-                "This is description for item popular in fast food app 4." +
-                "This is description for item popular in fast food app 5." +
-                "This is description for item popular in fast food app 6." +
-                "This is description for item popular in fast food app 7.", R.drawable.pop_1, 9.76f));
-        arr2.add(new Popular("Cheese Burger", "This is description for item popular in fast food app." +
-                "This is description for item popular in fast food app 1." +
-                "This is description for item popular in fast food app 2." +
-                "This is description for item popular in fast food app 3.", R.drawable.pop_2, 8.5f));
-        arr2.add(new Popular("Vegetable pizza", "This is description for item popular in fast food app.\n" +
-                "This is description for item popular in fast food app 1.\n" +
-                "This is description for item popular in fast food app 2.\n" +
-                "This is description for item popular in fast food app 3.\n" +
-                "This is description for item popular in fast food app 4.\n" +
-                "This is description for item popular in fast food app 5.\n" +
-                "This is description for item popular in fast food app 6.\n" +
-                "This is description for item popular in fast food app 7.", R.drawable.pop_3, 10.8f));
-        //Ánh xạ adapter popular:
-        RecyclerView.Adapter<PopularAdapter.ViewHolderPopular> adapter = new PopularAdapter(arr2);
-        rcvPopular.setAdapter(adapter);
+        //Lấy danh sách:
+        FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child("TablePopular")
+                .addValueEventListener(new ValueEventListener() {
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        arr2.clear();
+                        //Load dữ liệu từ firebase
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            Popular popular = dataSnapshot.getValue(Popular.class);
+                            arr2.add(popular);
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
     }
 
     private void anhXa() {
