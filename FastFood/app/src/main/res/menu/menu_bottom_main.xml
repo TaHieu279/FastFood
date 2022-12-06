@@ -16,13 +16,13 @@
 
     <item
         android:id="@+id/menu_notifications_main"
-        android:icon="@drawable/ic_baseline_notifications_24"
+        android:icon="@drawable/ic_notifications"
         android:title="Notifies"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/menu_setting_main"
-        android:icon="@drawable/ic_baseline_settings_24"
+        android:icon="@drawable/ic_settings"
         android:title="Setting"
         app:showAsAction="always" />
 

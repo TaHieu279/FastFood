@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tavanhieu.fastfood">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo_fastfood_25082022"
@@ -10,55 +12,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FastFood">
         <activity
-            android:name=".UserInformationActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:name=".activities.purchase_order.StatusToShipActivity"
+            android:exported="false" />
         <activity
-            android:name=".DialogAddressActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:name=".activities.purchase_order.StatusToPayActivity"
+            android:exported="false" />
         <activity
-            android:name=".CheckoutActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:name=".activities.purchase_order.ItemPurchaseOrderActivity"
+            android:exported="false" />
         <activity
-            android:name=".CategoriesHomeActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:name=".activities.user_info.UserInformationActivity"
+            android:exported="false" />
         <activity
-            android:name=".SettingInformationActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:name=".activities.payment.DialogDeliveryAddress"
+            android:exported="false" />
+        <activity
+            android:name=".activities.payment.CheckoutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CategoriesHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.user_info.SettingInformationActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.LoginActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".activities.CartActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.ShowDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -66,6 +44,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.payment.CartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ShowDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.IntroActivity"
+            android:exported="true" />
         <activity
             android:name=".activities.MainActivity"
             android:exported="false" />

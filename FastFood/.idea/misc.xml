@@ -3,24 +3,71 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable-xxhdpi/custom_for_purchase_order.xml" value="0.17" />
         <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable-xxxhdpi/cat_background2.xml" value="0.162" />
         <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable-xxxhdpi/cat_background3.xml" value="0.162" />
         <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable-xxxhdpi/cat_background4.xml" value="0.162" />
         <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable-xxxhdpi/cat_background5.xml" value="0.162" />
         <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/button_intro_selected.xml" value="0.162" />
         <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/cat_background1.xml" value="0.162" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/corner_radius_circle_bottom.xml" value="0.212" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/corner_raidus_circle.xml" value="0.212" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/custom_tab_layout.xml" value="0.1695" />
         <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic__shopping_cart.xml" value="0.162" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_baseline_login_24.xml" value="0.1695" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.1695" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.1695" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_date.xml" value="0.17" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_help.xml" value="0.17" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_home.xml" value="0.17" />
         <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_home_orange.xml" value="0.236" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_info.xml" value="0.17" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_launcher_background.xml" value="0.121" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.121" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_location.xml" value="0.17" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_money.xml" value="0.17" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_notifications_orange.xml" value="0.17" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_people.xml" value="0.1695" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_people_orange.xml" value="0.17" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_phone.xml" value="0.17" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/ic_settings_orange.xml" value="0.17" />
         <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/menu_selected.xml" value="0.162" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/tab_layout_selected.xml" value="0.1695" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/drawable/tab_layout_unselected.xml" value="0.1695" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout-v26/activity_checkout.xml" value="0.25" />
         <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_cart.xml" value="0.2" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_categories_home.xml" value="0.1875" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_checkout.xml" value="0.176" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_dialog_delivery_address.xml" value="0.1875" />
         <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_intro.xml" value="0.25" />
-        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_show_detail.xml" value="0.25" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_item_purchase_order.xml" value="0.1875" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_login.xml" value="0.176" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_personal_info.xml" value="0.1875" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_personal_informaltion.xml" value="0.2" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_setting_information.xml" value="0.1875" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_show_detail.xml" value="0.2" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_status_to_pay.xml" value="0.1875" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_status_to_ship.xml" value="0.1875" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/activity_user_information.xml" value="0.1875" />
         <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/bottom_appbar_main.xml" value="0.2" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/custom_tab_layout.xml" value="0.2" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/fragment_contact.xml" value="0.1875" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/fragment_home.xml" value="0.1875" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/fragment_notifies.xml" value="0.1875" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/fragment_setting.xml" value="0.1875" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/fragment_statistics.xml" value="0.2" />
         <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/item_cart.xml" value="0.23513513513513515" />
         <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/item_category.xml" value="0.2" />
-        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/item_popular.xml" value="0.264" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/item_list_product_order.xml" value="0.1875" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/item_popular.xml" value="0.2" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/item_purchase_order.xml" value="0.2" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/item_purchase_order_topay.xml" value="0.1875" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/item_rcv_setting.xml" value="0.2" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/item_sign_in.xml" value="0.21621621621621623" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/layout/item_sign_up.xml" value="0.21621621621621623" />
         <entry key="..\:/AndroidProject/FastFood/app/src/main/res/menu/menu_bottom_main.xml" value="0.2222222222222222" />
+        <entry key="..\:/AndroidProject/FastFood/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.17" />
       </map>
     </option>
   </component>

@@ -19,7 +19,7 @@ public interface MyDao {
     void update(BuyProduct buyProduct);
 
     //Xóa sản phẩm:
-    @Query("delete from MyBuyProduct")
+    @Query("Delete from MyBuyProduct")
     void delete();
 
     @Query("Select * from MyBuyProduct") //Lấy ra tất cả danh sách
@@ -28,10 +28,10 @@ public interface MyDao {
     @Query("Select * from MyBuyProduct") //Lấy ra tất cả danh sách cho liveData
     LiveData<List<BuyProduct>> getListForLiveData();
 
-    @Query("Delete from MyBuyProduct where id = :mId") //Xóa sản phẩm có title trùng
+    @Query("Delete from MyBuyProduct where id = :mId") //Xóa sản phẩm có id trùng
     void delete(int mId);
 
-    @Query("Select * from MyBuyProduct where id = :mId") //Lấy ra sản phẩm có title trùng
+    @Query("Select * from MyBuyProduct where id = :mId") //Lấy ra sản phẩm có id trùng
     BuyProduct getByTitle(int mId);
 
     @Query("Update MyBuyProduct set number = :mNumber where title = :mTitle") //Cập nhật số lượng sản phẩm mua theo tên

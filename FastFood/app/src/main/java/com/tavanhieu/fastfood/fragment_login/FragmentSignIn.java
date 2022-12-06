@@ -66,7 +66,7 @@ public class FragmentSignIn extends Fragment {
     @SuppressLint("CommitPrefEdits")
     private void checkSignIn() {
         if (edtUserNameSignIn.getText().length() == 0 || edtPassSignIn.getText().length() == 0) {
-            Toast.makeText(requireActivity(), "Please enter all note.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireActivity(), "Please enter all blank!", Toast.LENGTH_SHORT).show();
         } else {
             //Lấy dữ liệu input:
             String userName = edtUserNameSignIn.getText().toString().trim();
@@ -88,7 +88,7 @@ public class FragmentSignIn extends Fragment {
                             startActivity(new Intent(requireActivity(), MainActivity.class));
                             requireActivity().finish();
                         } else {
-                            Toast.makeText(requireActivity(), "Login Unsuccessfully!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(requireActivity(), "Login Failed!", Toast.LENGTH_SHORT).show();
                         }
                     });
         }

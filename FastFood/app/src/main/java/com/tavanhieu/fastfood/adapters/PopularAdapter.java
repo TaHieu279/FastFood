@@ -1,9 +1,7 @@
 package com.tavanhieu.fastfood.adapters;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +9,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 import com.tavanhieu.fastfood.R;
 import com.tavanhieu.fastfood.activities.ShowDetailActivity;
-import com.tavanhieu.fastfood.my_class.Popular;
+import com.tavanhieu.fastfood.my_class.ItemCategories;
 import java.util.ArrayList;
 
 public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHolderPopular> {
-    private ArrayList<Popular> arr;
+    private ArrayList<ItemCategories> arr;
 
     @SuppressLint("NotifyDataSetChanged")
-    public PopularAdapter(ArrayList<Popular> arr) {
+    public PopularAdapter(ArrayList<ItemCategories> arr) {
         this.arr = arr;
         notifyDataSetChanged();
     }
@@ -48,12 +48,14 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolderPopular holder, int position) {
-        Popular item = arr.get(position);
+        ItemCategories item = arr.get(position);
         if(item == null)    return;
-        holder.imgItem.setImageResource(item.getImg());
-        holder.txtTitle.setText(item.getTile());
+        //Load dữ liệu text
+        holder.txtTitle.setText(item.getName());
         holder.txtPrice.setText("$"+item.getPrice());
-
+        //Load ảnh
+        Picasso.get().load(item.getImage()).centerInside().resize(200, 200).into(holder.imgItem);
+        //Sự kiện click
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

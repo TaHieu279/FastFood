@@ -1,6 +1,8 @@
 package com.tavanhieu.fastfood.adapters;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +13,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tavanhieu.fastfood.R;
+import com.tavanhieu.fastfood.activities.purchase_order.ItemPurchaseOrderActivity;
 import com.tavanhieu.fastfood.my_class.Categories;
 
 import java.util.ArrayList;
 
-public class PurchaseOrderAdapter extends RecyclerView.Adapter<PurchaseOrderAdapter.MyViewHolder> {
+public class PurchaseOrderAdapter extends RecyclerView.Adapter<PurchaseOrderAdapter.MyViewHolder>{
     private ArrayList<Categories> arr;
+    private Context context;
 
-    public PurchaseOrderAdapter(ArrayList<Categories> arr) {
+    public PurchaseOrderAdapter(Context context, ArrayList<Categories> arr) {
+        this.context = context;
         this.arr = arr;
     }
 
@@ -31,12 +36,42 @@ public class PurchaseOrderAdapter extends RecyclerView.Adapter<PurchaseOrderAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Categories item = arr.get(position);
         if(item != null) {
-            holder.txtItem.setText(item.getTitle());
+            holder.txtTitle.setText(item.getTitle());
             holder.imgItem.setImageResource(item.getImg());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Mở màn hình ItemPurchaseOrder hiển thị danh sách đơn hàng theo loại: đã đặt, đang vận chuyển, đã nhận, đã hủy.
+                    openItemPurchaseOrder(position);
+                }
+            });
         }
+    }
+
+    private void openItemPurchaseOrder(int position) {
+        switch (position) {
+            case 0:
+                loadItem("ToPay");
+                break;
+            case 1:
+                loadItem("ToShip");
+                break;
+            case 2:
+                loadItem("ToReceive");
+                break;
+            case 3:
+                loadItem("Cancel");
+                break;
+        }
+    }
+
+    private void loadItem(String type) {
+        Intent intent = new Intent(context, ItemPurchaseOrderActivity.class);
+        intent.putExtra("type", type);
+        context.startActivity(intent);
     }
 
     @Override
@@ -46,12 +81,12 @@ public class PurchaseOrderAdapter extends RecyclerView.Adapter<PurchaseOrderAdap
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgItem;
-        private TextView txtItem;
+        private TextView txtTitle;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imgItem = itemView.findViewById(R.id.img_item_setting);
-            txtItem = itemView.findViewById(R.id.txt_item_setting);
+            txtTitle = itemView.findViewById(R.id.txt_item_setting);
         }
     }
 }

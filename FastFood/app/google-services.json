@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "705775496341",
-    "project_id": "fastfood2-87b98",
-    "storage_bucket": "fastfood2-87b98.appspot.com"
+    "project_number": "520360125179",
+    "project_id": "fastfood-d046b",
+    "storage_bucket": "fastfood-d046b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:705775496341:android:818f52bde25e701274ff9c",
+        "mobilesdk_app_id": "1:520360125179:android:513d577374e0ab14ae865e",
         "android_client_info": {
           "package_name": "com.tavanhieu.fastfood"
         }
       },
       "oauth_client": [
         {
-          "client_id": "705775496341-pv71n21ksjtva7vh0p09tk45d9lhpvvm.apps.googleusercontent.com",
+          "client_id": "520360125179-och96n5quatarghsjg6rs2mv96hav25r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD2xQou9iHnHx5nsO27QVj1U5XkCHQdRzE"
+          "current_key": "AIzaSyCrnhjNXwF-Jhnk2AIxlovRD9F4cUYfRrg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "705775496341-pv71n21ksjtva7vh0p09tk45d9lhpvvm.apps.googleusercontent.com",
+              "client_id": "520360125179-och96n5quatarghsjg6rs2mv96hav25r.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

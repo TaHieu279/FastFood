@@ -5,7 +5,6 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.tavanhieu.fastfood.my_class.BuyProduct;
-import com.tavanhieu.fastfood.my_class.Popular;
 
 @androidx.room.Database(entities = BuyProduct.class, version = 1)
 public abstract class MyDatabase extends RoomDatabase {

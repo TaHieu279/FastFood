@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,16 +17,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.tavanhieu.fastfood.R;
 import com.tavanhieu.fastfood.adapters.PopularAdapter;
-import com.tavanhieu.fastfood.my_class.Popular;
+import com.tavanhieu.fastfood.my_class.ItemCategories;
 
 import java.util.ArrayList;
 
 public class CategoriesHomeActivity extends AppCompatActivity {
     private TextView txtTitle;
+    private ImageView imgBack;
     private RecyclerView rcvDanhSach;
     private int position;
 
-    private ArrayList<Popular> arr = new ArrayList<>();
+    private ArrayList<ItemCategories> arr = new ArrayList<>();
     private PopularAdapter adapter;
 
     @Override
@@ -40,9 +43,17 @@ public class CategoriesHomeActivity extends AppCompatActivity {
         //Ánh xạ adapter
         adapter = new PopularAdapter(arr);
         rcvDanhSach.setAdapter(adapter);
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void anhXa() {
+        imgBack = findViewById(R.id.img_back);
         txtTitle = findViewById(R.id.txt_title_categories_home);
         rcvDanhSach = findViewById(R.id.rcv_categories_home);
     }
@@ -91,8 +102,8 @@ public class CategoriesHomeActivity extends AppCompatActivity {
                         arr.clear();
                         //Load dữ liệu từ firebase
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                            Popular popular = dataSnapshot.getValue(Popular.class);
-                            arr.add(popular);
+                            ItemCategories itemCategories = dataSnapshot.getValue(ItemCategories.class);
+                            arr.add(itemCategories);
                         }
                         adapter.notifyDataSetChanged();
                     }

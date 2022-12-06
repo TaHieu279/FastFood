@@ -11,11 +11,14 @@ public class BuyProduct implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     private Integer id;
-    private String title;
-    private int image, number;
+    private String title, image;
+    private int number;
     private float price;
 
-    public BuyProduct(Integer id, String title, int image, int number, float price) {
+    public BuyProduct() {
+    }
+
+    public BuyProduct(Integer id, String title, String image, int number, float price) {
         this.id = id;
         this.title = title;
         this.image = image;
@@ -39,11 +42,11 @@ public class BuyProduct implements Serializable {
         this.title = title;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

@@ -27,7 +27,7 @@ public class FragmentSignUp extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.item_sign_up, container, false);
-
+        
         anhXa();
         myOnClick();
         return mView;
@@ -38,8 +38,6 @@ public class FragmentSignUp extends Fragment {
             @Override
             public void onClick(View view) {
                 signUpUser();
-//                startActivity(new Intent(requireActivity(), MainActivity.class));
-//                requireActivity().finish();
             }
         });
     }
@@ -50,7 +48,7 @@ public class FragmentSignUp extends Fragment {
                 || edtEmail.getText().length() == 0
                 || edtPassSignUp.getText().length() == 0
                 || edtPassSignUp2.getText().length() == 0) {
-            Toast.makeText(requireActivity(), "Please enter all note.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireActivity(), "Please enter all blank!", Toast.LENGTH_SHORT).show();
         } else {
             //Lấy dữ liệu từ các ô nhập
             String userName = edtUserNameSignUp.getText().toString().trim();
@@ -61,10 +59,10 @@ public class FragmentSignUp extends Fragment {
             //Kiểm tra dữ liệu:
             if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 edtEmail.setFocusable(true);
-                edtEmail.setError("Email not correct!");
+                edtEmail.setError("Email incorrect!");
             } else if(!pass.equals(pass2)) {
                 edtPassSignUp2.setFocusable(true);
-                edtPassSignUp2.setError("Pass2 not matches with pass1");
+                edtPassSignUp2.setError("Pass2 doesn't matches with pass1");
             } else {
                 createAccount(userName, email, pass);
             }
@@ -96,7 +94,7 @@ public class FragmentSignUp extends Fragment {
                                 .replace(R.id.fragment_sign_in_up, new FragmentSignIn())
                                 .commit();
                     } else {
-                        Toast.makeText(requireActivity(), "Register Unsuccessfully!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireActivity(), "Register Failed!", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
