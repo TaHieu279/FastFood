@@ -46,8 +46,7 @@
                     android:id="@+id/tab_layout"
                     layout="@layout/custom_tab_layout" />
 
-                <fragment
-                    tools:layout="@layout/item_sign_in"
+                <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/fragment_sign_in_up"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

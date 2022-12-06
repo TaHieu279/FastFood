@@ -11,7 +11,8 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tavanhieu.fastfood.R;
-import com.tavanhieu.fastfood.fragment_main.Fragment_Contact;
+import com.tavanhieu.fastfood.activities.payment.CartActivity;
+import com.tavanhieu.fastfood.fragment_main.Fragment_Statistic;
 import com.tavanhieu.fastfood.fragment_main.Fragment_Home;
 import com.tavanhieu.fastfood.fragment_main.Fragment_Notifies;
 import com.tavanhieu.fastfood.fragment_main.Fragment_Setting;
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 //Home is select
                 imgHome.setImageResource(R.drawable.ic_home_orange);
                 txtHome.setTextColor(Color.parseColor("#ff5e00"));
-                imgContact.setImageResource(R.drawable.ic_people);
+                imgContact.setImageResource(R.drawable.statistics);
                 txtContact.setTextColor(Color.parseColor("#000000"));
                 imgNotifies.setImageResource(R.drawable.ic_notifications);
                 txtNotifies.setTextColor(Color.parseColor("#000000"));
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 imgHome.setImageResource(R.drawable.ic_home);
                 txtHome.setTextColor(Color.parseColor("#000000"));
                 //Contact is select
-                imgContact.setImageResource(R.drawable.ic_people_orange);
+                imgContact.setImageResource(R.drawable.statistics_orange);
                 txtContact.setTextColor(Color.parseColor("#ff5e00"));
                 imgNotifies.setImageResource(R.drawable.ic_notifications);
                 txtNotifies.setTextColor(Color.parseColor("#000000"));
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 //Chuyển sang fragment contact
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_main, new Fragment_Contact())
+                        .replace(R.id.fragment_main, new Fragment_Statistic())
                         .commit();
             }
         });
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 imgHome.setImageResource(R.drawable.ic_home);
                 txtHome.setTextColor(Color.parseColor("#000000"));
-                imgContact.setImageResource(R.drawable.ic_people);
+                imgContact.setImageResource(R.drawable.statistics);
                 txtContact.setTextColor(Color.parseColor("#000000"));
                 //Notifies is select
                 imgNotifies.setImageResource(R.drawable.ic_notifications_orange);
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 imgHome.setImageResource(R.drawable.ic_home);
                 txtHome.setTextColor(Color.parseColor("#000000"));
-                imgContact.setImageResource(R.drawable.ic_people);
+                imgContact.setImageResource(R.drawable.statistics);
                 txtContact.setTextColor(Color.parseColor("#000000"));
                 imgNotifies.setImageResource(R.drawable.ic_notifications);
                 txtNotifies.setTextColor(Color.parseColor("#000000"));

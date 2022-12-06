@@ -18,7 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.tavanhieu.fastfood.R;
 import com.tavanhieu.fastfood.activities.LoginActivity;
-import com.tavanhieu.fastfood.activities.UserInformationActivity;
+import com.tavanhieu.fastfood.activities.user_info.UserInformationActivity;
+import com.tavanhieu.fastfood.adapters.MyWalletAdapter;
 import com.tavanhieu.fastfood.adapters.PurchaseOrderAdapter;
 import com.tavanhieu.fastfood.my_class.Categories;
 
@@ -32,7 +33,8 @@ public class Fragment_Setting extends Fragment {
 
     //Sử dụng lại Categories để không phải tạo class mới.
     private ArrayList<Categories> arr1 = new ArrayList<>(), arr2 = new ArrayList<>();
-    private PurchaseOrderAdapter adapter1, adapter2;
+    private PurchaseOrderAdapter adapter1;
+    private MyWalletAdapter adapter2;
     private SharedPreferences sharedPreferences;
 
     @Nullable
@@ -63,13 +65,13 @@ public class Fragment_Setting extends Fragment {
         arr1.add(new Categories(R.drawable.to_ship, "To Ship"));
         arr1.add(new Categories(R.drawable.to_receive, "To Receive"));
         arr1.add(new Categories(R.drawable.cancel, "Cancel"));
-        adapter1 = new PurchaseOrderAdapter(arr1);
+        adapter1 = new PurchaseOrderAdapter(requireActivity(), arr1);
         rcvPurchaseOrder.setAdapter(adapter1);
         //My Wallet
         arr2.add(new Categories(R.drawable.wallet, "Wallet"));
         arr2.add(new Categories(R.drawable.voucher, "Vouchers"));
         arr2.add(new Categories(R.drawable.coin, "My coins"));
-        adapter2 = new PurchaseOrderAdapter(arr2);
+        adapter2 = new MyWalletAdapter(arr2);
         rcvMyWallet.setAdapter(adapter2);
     }
 

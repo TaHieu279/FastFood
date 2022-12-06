@@ -1,6 +1,8 @@
 package com.tavanhieu.fastfood.fragment_main;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +24,7 @@ import com.tavanhieu.fastfood.R;
 import com.tavanhieu.fastfood.adapters.CategoryAdapter;
 import com.tavanhieu.fastfood.adapters.PopularAdapter;
 import com.tavanhieu.fastfood.my_class.Categories;
-import com.tavanhieu.fastfood.my_class.Popular;
+import com.tavanhieu.fastfood.my_class.ItemCategories;
 import com.tavanhieu.fastfood.my_class.User;
 
 import java.util.ArrayList;
@@ -33,8 +35,9 @@ public class Fragment_Home extends Fragment {
     private RecyclerView rcvCategory, rcvPopular;
     private TextView txtUserName;
     private ArrayList<Categories> arr1;
-    private ArrayList<Popular> arr2;
+    private ArrayList<ItemCategories> arr2;
     private RecyclerView.Adapter<PopularAdapter.ViewHolderPopular> adapter;
+    private SharedPreferences sharedPreferences;
 
     @SuppressLint({"SetTextI18n", "ShowToast"})
     @Nullable
@@ -42,11 +45,15 @@ public class Fragment_Home extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        //Khởi tạo sharedPreferences để lưu trữ thông tin người dùng:
+        sharedPreferences = requireActivity().getSharedPreferences("InformationUser", Context.MODE_PRIVATE);
+
         anhXa();
         getUserFromFirebase();
         getDataCategories();
         getDataPopular();
 
+        txtUserName.setText("Hi, " + sharedPreferences.getString("UserName", ""));
         //Ánh xạ adapter popular:
         adapter = new PopularAdapter(arr2);
         rcvPopular.setAdapter(adapter);
@@ -56,7 +63,7 @@ public class Fragment_Home extends Fragment {
     private void getUserFromFirebase() {
         //Lấy ra uid:
         String uid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-        //Lấy ra user từ uid:
+        //Lưu userCurrent vào shared:
         FirebaseDatabase
                 .getInstance()
                 .getReference()
@@ -72,6 +79,12 @@ public class Fragment_Home extends Fragment {
                             //Gán dữ liệu ra text:
                             if (user != null) {
                                 txtUserName.setText("Hi, " + user.getUserName());
+                                //Lưu vào shared
+                                sharedPreferences.edit().putString("UserName", user.getUserName()).apply();
+                                sharedPreferences.edit().putString("Uid", user.getUid()).apply();
+                                sharedPreferences.edit().putString("Email", user.getEmail()).apply();
+                                sharedPreferences.edit().putString("Address", user.getAddress()).apply();
+                                sharedPreferences.edit().putString("DateOfBirth", user.getDateOfBirth()).apply();
                             }
                         } catch (Exception ex) {
                             Toast.makeText(requireContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
@@ -81,7 +94,6 @@ public class Fragment_Home extends Fragment {
                     public void onCancelled(@NonNull DatabaseError error) {
                     }
                 });
-
     }
 
     private void getDataCategories() {
@@ -112,8 +124,8 @@ public class Fragment_Home extends Fragment {
                         arr2.clear();
                         //Load dữ liệu từ firebase
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                            Popular popular = dataSnapshot.getValue(Popular.class);
-                            arr2.add(popular);
+                            ItemCategories itemCategories = dataSnapshot.getValue(ItemCategories.class);
+                            arr2.add(itemCategories);
                         }
                         adapter.notifyDataSetChanged();
                     }
