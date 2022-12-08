@@ -64,7 +64,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolderCart
         holder.txtPrice.setText(String.valueOf("$" + item.getPrice()));
         holder.txtTotalPrice.setText(String.valueOf("$" + df.format(item.getPrice() * item.getNumber())));
         //Tải ảnh:
-        Picasso.get().load(item.getImage()).centerInside().resize(200, 200).into(holder.imgItem);
+        Picasso.get().load(item.getImage()).placeholder(R.drawable.load_product).centerInside().resize(200, 200).into(holder.imgItem);
 
         holder.imgCancel.setOnClickListener(new View.OnClickListener() {
             @Override

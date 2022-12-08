@@ -5,10 +5,17 @@ import android.net.Uri;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private String uid, userName, email, dateOfBirth, address;
+    private String uid, userName, email, dateOfBirth, address, phoneNumber;
     private Uri imgAvatar;
 
     public User() {}
+
+    public User(String uid, String userName, String address, String phoneNumber) {
+        this.uid = uid;
+        this.userName = userName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+    }
 
     public User(String userName, String email, String uid) {
         this.userName = userName;
@@ -71,5 +78,13 @@ public class User implements Serializable {
 
     public void setImgAvatar(Uri imgAvatar) {
         this.imgAvatar = imgAvatar;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

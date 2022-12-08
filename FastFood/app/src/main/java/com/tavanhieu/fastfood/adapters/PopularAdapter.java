@@ -54,7 +54,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         holder.txtTitle.setText(item.getName());
         holder.txtPrice.setText("$"+item.getPrice());
         //Load ảnh
-        Picasso.get().load(item.getImage()).centerInside().resize(200, 200).into(holder.imgItem);
+        Picasso.get().load(item.getImage()).placeholder(R.drawable.load_product).centerInside().resize(200, 200).into(holder.imgItem);
         //Sự kiện click
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

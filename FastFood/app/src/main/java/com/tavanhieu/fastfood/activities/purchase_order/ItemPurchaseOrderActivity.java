@@ -29,10 +29,8 @@ public class ItemPurchaseOrderActivity extends AppCompatActivity {
     private RecyclerView rcvDanhSach;
 
     private ArrayList<Payment> arr = new ArrayList<>();
-    @SuppressLint("StaticFieldLeak")
-    public static ToPayAdapter adapter1;
-    @SuppressLint("StaticFieldLeak")
-    public static ToShipAdapter adapter2;
+    private ToPayAdapter adapter1;
+    private ToShipAdapter adapter2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

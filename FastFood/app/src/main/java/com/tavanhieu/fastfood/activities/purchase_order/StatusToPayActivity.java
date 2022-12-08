@@ -23,9 +23,10 @@ import java.text.DecimalFormat;
 public class StatusToPayActivity extends AppCompatActivity {
     private ImageView imgBack;
     private EditText edtAddress;
-    private TextView txtItemTotal, txtShipping, txtTotalPayment, txtStatus;
+    private TextView txtId, txtUserName, txtPhoneNumber, txtDate, txtItemTotal, txtShipping, txtTotalPayment, txtStatus;
     private RecyclerView rcvList;
     private Button btnCancel;
+
     private ListProductOrderAdapter adapter;
     private Payment item;
 
@@ -40,7 +41,11 @@ public class StatusToPayActivity extends AppCompatActivity {
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         item = (Payment) getIntent().getSerializableExtra("detail_order");
         if (item != null) {
-            edtAddress.setText(item.getUser().getUserName() + " - 0123456789 - " + item.getUser().getAddress());
+            edtAddress.setText(item.getUser().getAddress());
+            txtId.setText(item.getId());
+            txtDate.setText(item.getDate().toString());
+            txtUserName.setText(item.getUser().getUserName());
+            txtPhoneNumber.setText(item.getUser().getPhoneNumber());
             txtItemTotal.setText(decimalFormat.format(item.getItemTotal()));
             txtShipping.setText(decimalFormat.format(item.getShipping()));
             txtTotalPayment.setText(decimalFormat.format(item.getTotalPayment()));
@@ -84,14 +89,16 @@ public class StatusToPayActivity extends AppCompatActivity {
                 .setValue("Cancel");
         Toast.makeText(this, "Cancelled this order.", Toast.LENGTH_SHORT).show();
         finish();
-        //Chưa load lại list khi hủy mua sản phẩm:
-        ItemPurchaseOrderActivity.adapter1.notifyDataSetChanged();
     }
 
     private void anhXa() {
         imgBack = findViewById(R.id.img_back);
         rcvList = findViewById(R.id.rcv_list);
         btnCancel = findViewById(R.id.btn_cancel);
+        txtId = findViewById(R.id.txt_id);
+        txtDate = findViewById(R.id.txt_date);
+        txtUserName = findViewById(R.id.txt_user);
+        txtPhoneNumber = findViewById(R.id.txt_phone);
         txtItemTotal = findViewById(R.id.txt_item_total);
         txtShipping = findViewById(R.id.txt_shipping);
         txtTotalPayment = findViewById(R.id.txt_total_payment);
