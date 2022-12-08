@@ -22,6 +22,8 @@ import com.tavanhieu.fastfood.my_class.Payment;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ToPayAdapter extends RecyclerView.Adapter<ToPayAdapter.MyViewHolder>{
     private ArrayList<Payment> arr;
@@ -30,6 +32,14 @@ public class ToPayAdapter extends RecyclerView.Adapter<ToPayAdapter.MyViewHolder
     public ToPayAdapter(Context context, ArrayList<Payment> arr) {
         this.context = context;
         this.arr = arr;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void setData(List<Payment> arr) {
+        Collections.reverse(arr);
+        this.arr = (ArrayList<Payment>) arr;
+        //Cập nhật lại sự thay đổi
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -44,6 +54,7 @@ public class ToPayAdapter extends RecyclerView.Adapter<ToPayAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Payment item = arr.get(position);
         if (item != null) {
+            holder.txtId.setText("#id: " + item.getId());
             holder.txtUserName.setText(item.getUser().getUserName());
             holder.txtAddress.setText(item.getUser().getAddress());
             holder.txtDate.setText(item.getDate().toString());

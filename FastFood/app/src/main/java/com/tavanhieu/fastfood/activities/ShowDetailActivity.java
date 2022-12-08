@@ -96,7 +96,7 @@ public class ShowDetailActivity extends AppCompatActivity {
             txtTitle.setText(String.valueOf(object.getName()));
 //            txtDescription.setText(String.valueOf(object.getDescription()));
             txtPrice.setText("$" + object.getPrice());
-            Picasso.get().load(object.getImage()).into(imgItem);
+            Picasso.get().load(object.getImage()).placeholder(R.drawable.load_product).into(imgItem);
         }
     }
 

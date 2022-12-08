@@ -57,7 +57,7 @@ public class CheckoutActivity extends AppCompatActivity {
                 payment();
             }
         });
-        
+
         txtEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +90,12 @@ public class CheckoutActivity extends AppCompatActivity {
 
     @SuppressLint("SimpleDateFormat")
     private void payment() {
-        if(payment != null && payment.getArrBuyProduct().size() != 0) {
+        if (payment != null && payment.getArrBuyProduct().size() != 0) {
+            //cập nhật thông tin người đặt hàng:
+            payment.setUser(new User(payment.getUser().getUid(),
+                    edtUserName.getText().toString().trim(),
+                    edtAddress.getText().toString().trim(),
+                    edtPhoneNumber.getText().toString().trim()));
             //Cập nhật sản phẩm mua lên firebase:
             FirebaseDatabase
                     .getInstance()
@@ -109,6 +114,7 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void loadData() {
+
         //Load thông tin người dùng:
         SharedPreferences sharedPreferences = getSharedPreferences("InformationUser", MODE_PRIVATE);
         edtUserName.setText(sharedPreferences.getString("UserName", null));

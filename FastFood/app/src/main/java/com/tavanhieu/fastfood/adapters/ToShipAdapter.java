@@ -19,14 +19,17 @@ import com.tavanhieu.fastfood.my_class.Payment;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ToShipAdapter extends RecyclerView.Adapter<ToShipAdapter.MyViewHolder>{
     private ArrayList<Payment> arr;
     private Context context;
 
+    @SuppressLint("NotifyDataSetChanged")
     public ToShipAdapter(Context context, ArrayList<Payment> arr) {
         this.context = context;
         this.arr = arr;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -41,11 +44,12 @@ public class ToShipAdapter extends RecyclerView.Adapter<ToShipAdapter.MyViewHold
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Payment item = arr.get(position);
         if (item != null) {
+            holder.txtId.setText("#id: " +  item.getId());
             holder.txtUserName.setText(item.getUser().getUserName());
             holder.txtAddress.setText(item.getUser().getAddress());
             holder.txtDate.setText(item.getDate().toString());
             holder.txtPrice.setText("$" + new DecimalFormat("0.00").format(item.getTotalPayment()));
-            holder.txtNumberArr.setText("(" + item.getArrBuyProduct().size() + " dish)");
+            holder.txtNumberArr.setText("(" + item.getArrBuyProduct().size() + " dishes)");
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
